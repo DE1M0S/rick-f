@@ -70,7 +70,7 @@ It SHALL check as root, on the opened objects, every rule the actions check:
 - a name passes the name check;
 - a snapshot to delete is read-only, has a parent uuid, and is not managed by Snapper or Timeshift.
 
-It SHALL resolve no path through a symbolic link. It SHALL run with a cleared environment and start no other program. It SHALL report a kernel refusal with the kernel's reason and a non-zero exit code.
+It SHALL resolve no path through a symbolic link. It SHALL read no environment variable and start no other program. It SHALL report a kernel refusal with the kernel's reason and a non-zero exit code.
 
 #### Scenario: Plain subvolume refused
 - **WHEN** `rick-btrfs delete /home` is run, `/home` being a writable subvolume without parent uuid

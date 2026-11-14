@@ -6,6 +6,7 @@
 
 - A sparse 2 GB image in `~/.cache/rick-btrfs-test/test.img`, made by `mkfs.btrfs -r <tree> --subvol @ --subvol @home --subvol @home/.snapshots`, so every folder belongs to the user.
 - `udisksctl loop-setup` and `udisksctl mount` mount it as the user, top level (id 5) at `/run/media/<user>/ricktest`.
+- `@scratch` is a subvolume for the tests that take snapshots (change 3): without root they cannot delete one, so they stay off `@home`.
 - As owner of `@home`, the user may take read-only snapshots: `@home/.snapshots/1/snapshot`, `@home/.snapshots/2/snapshot` (Snapper style), `@home/locked/hidden` (in a folder of mode 000, unreachable), and `timeshift-btrfs/snapshots/2026-11-01/@home` (top level).
 
 Found on the way:

@@ -40,7 +40,7 @@ A new trait `Subvolumes` in `platform/src/traits.rs`, joined into `Platform`, wi
 | Subvolumes below a folder | `BTRFS_IOC_GET_SUBVOL_ROOTREF` on the subvolume root lists its direct child subvolumes (paged, 255 per call); `BTRFS_IOC_INO_LOOKUP_USER` turns each child into a path below the parent and checks the user may traverse it; open each reachable child and recurse; keep those whose path lies below the folder asked for |
 | Mounted Btrfs | Parse `/proc/self/mountinfo`: file-system type `btrfs`, the mount point, the `subvolid=` and `subvol=` options, the source device; file-system id from `FS_INFO` on the mount point |
 
-The parsing of `/proc/self/mountinfo` is plain Rust in `platform/src/linux/`, including its octal escapes (`\040` for a space). The struct layouts mirror `linux/btrfs.h`, and a compile-time size assertion for each catches a mistake in the layout before it reaches the kernel.
+The parsing of `/proc/self/mountinfo` reuses the parser `platform/src/linux/volumes.rs` already has for the volume list (`parse`, `unescape`, octal escapes such as `\040` for a space), widened to keep the super options and the file-system type where it drops them today. The struct layouts mirror `linux/btrfs.h`, and a compile-time size assertion for each catches a mistake in the layout before it reaches the kernel.
 
 ### 3. Types
 

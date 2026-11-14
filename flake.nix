@@ -18,7 +18,8 @@
     in {
       devShells.${system} = {
       default = pkgs.mkShell {
-        nativeBuildInputs = [ toolchain pkgs.rust-analyzer pkgs.cargo-deny pkgs.pkg-config ];
+        # btrfs-progs: builds the Btrfs test image (openspec add-btrfs-subvolume-probe)
+        nativeBuildInputs = [ toolchain pkgs.rust-analyzer pkgs.cargo-deny pkgs.pkg-config pkgs.btrfs-progs ];
         buildInputs = libs;
         # eframe lädt Wayland/X11/GL/Vulkan zur Laufzeit per dlopen
         LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath libs;

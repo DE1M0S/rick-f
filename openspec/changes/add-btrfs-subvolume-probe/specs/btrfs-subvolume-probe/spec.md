@@ -56,7 +56,7 @@ The platform SHALL list the mounted Btrfs file systems as the current process se
 - **THEN** the list is empty
 
 ### Requirement: Read only, everywhere safe
-The subvolume service SHALL never change a file system. On macOS and Windows it SHALL answer "not Btrfs" for every path and an empty list for every listing, without an error.
+Identifying a subvolume and listing subvolumes or mounts SHALL never change a file system. On macOS and Windows it SHALL answer "not Btrfs" for every path and an empty list for every listing, without an error.
 
 #### Scenario: Windows
 - **WHEN** an extension asks the platform about `C:\Users\ann` on Windows
